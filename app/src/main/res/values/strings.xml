@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Aviv Home Project</string>
+    <string name="content_description_property_detail_photo">Property Photo</string>
+    <plurals name="numberOfRooms">
+        <item quantity="one">%d room</item>
+        <item quantity="other">%d rooms</item>
+    </plurals>
+    <plurals name="numberOfBedrooms">
+        <item quantity="one">%d bedroom</item>
+        <item quantity="other">%d bedrooms</item>
+    </plurals>
+</resources>
