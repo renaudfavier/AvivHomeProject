@@ -74,8 +74,8 @@ core/
 ├── data/
 ├── di/
 ├── presentation/
-│   ├── listings/
-│   └── details/
+│   ├── component/
+│   └── util/
 └── ui/
     └── theme/
 property/
