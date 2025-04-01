@@ -9,11 +9,13 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import com.example.avivhomeproject.BuildConfig
+import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
 class CoreModule {
-    
+
+    @Singleton
     @Provides
     fun provideOkHttpClient(): OkHttpClient {
         val builder = OkHttpClient.Builder()
@@ -25,6 +27,7 @@ class CoreModule {
         return builder.build()
     }
 
+    @Singleton
     @Provides
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()

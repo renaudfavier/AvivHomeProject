@@ -4,7 +4,9 @@ import com.example.avivhomeproject.property.data.mapper.PropertyMapper
 import com.example.avivhomeproject.property.domain.PropertyRepository
 import com.example.avivhomeproject.property.domain.model.Property
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class PropertyRepositoryImpl @Inject constructor(
     private val propertyRemoteDataSource: PropertyRemoteDataSource,
     private val propertyMapper: PropertyMapper = PropertyMapper()
