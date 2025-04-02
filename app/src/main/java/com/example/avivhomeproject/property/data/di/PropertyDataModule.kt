@@ -9,12 +9,14 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
+import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
 interface PropertyDataModule {
 
     companion object {
+        @Singleton
         @Provides
         fun providePropertyEndpoint(retrofit: Retrofit): PropertyEndpoint {
             return retrofit.create(PropertyEndpoint::class.java)

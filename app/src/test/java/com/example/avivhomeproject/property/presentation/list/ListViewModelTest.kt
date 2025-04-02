@@ -5,6 +5,7 @@ import com.example.avivhomeproject.property.domain.model.OfferType
 import com.example.avivhomeproject.property.domain.model.ProfessionalType
 import com.example.avivhomeproject.property.domain.model.Property
 import com.example.avivhomeproject.property.domain.model.PropertyType
+import kotlinx.collections.immutable.persistentListOf
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.delay
@@ -63,6 +64,8 @@ class ListViewModelTest {
         //When
         given(propertyRepository.getListedProperties())
             .willReturn(Result.success(listOf(createProperty())))
+        given(mapper.map(any()))
+            .willReturn(persistentListOf())
 
         // Create an empty collector for the StateFlow
         backgroundScope.launch(UnconfinedTestDispatcher(testScheduler)) {
@@ -80,7 +83,7 @@ class ListViewModelTest {
         given(propertyRepository.getListedProperties())
             .willReturn(Result.success(listOf(createProperty())))
         given(mapper.map(any()))
-            .willReturn(emptyList())
+            .willReturn(persistentListOf())
 
         // Create an empty collector for the StateFlow
         backgroundScope.launch(UnconfinedTestDispatcher(testScheduler)) {

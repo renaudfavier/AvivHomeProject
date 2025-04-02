@@ -1,14 +1,14 @@
 package com.example.avivhomeproject.property.presentation.detail
 
-import android.content.res.Configuration
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
@@ -23,7 +23,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -41,7 +40,6 @@ fun PropertyDetailScreen(
 ) = Box(
     modifier = modifier
         .fillMaxSize()
-        .background(Color.White),
 ) {
     when (uiModel) {
         is PropertyDetailUiModel.Content -> Content(uiModel.details)
@@ -81,12 +79,11 @@ private fun BackButton(
 private fun Content(
     uiModel: DetailedPropertyUiModel,
     modifier: Modifier = Modifier
+) = BoxWithConstraints(
+    modifier = modifier.fillMaxSize()
 ) {
-    val configuration = LocalConfiguration.current
-    val orientation = configuration.orientation
-
-    if (orientation == Configuration.ORIENTATION_PORTRAIT) {
-        Column(modifier) {
+    if (maxWidth < 600.dp) {
+        Column(Modifier.fillMaxSize()) {
             PropertyImage(
                 imageUrl = uiModel.imageUrl,
                 modifier = Modifier
@@ -96,10 +93,11 @@ private fun Content(
             Description(uiModel)
         }
     } else {
-        Row(modifier) {
+        Row(Modifier.fillMaxSize()) {
             PropertyImage(
                 imageUrl = uiModel.imageUrl,
                 modifier = Modifier
+                    .heightIn(max = 400.dp)
                     .fillMaxHeight()
                     .aspectRatio(4 / 3f),
             )
@@ -114,6 +112,7 @@ private fun Description(
     modifier: Modifier = Modifier,
 ) = Column(
     modifier = modifier
+        .fillMaxWidth()
         .padding(horizontal = 12.dp, vertical = 24.dp)
 ) {
     Text(
@@ -161,6 +160,28 @@ private fun PriceRow(
 @Preview(device = "spec:parent=pixel_5,orientation=portrait")
 @Composable
 private fun ContentPreviewPortrait() {
+    AvivTheme {
+        PropertyDetailScreen(
+            PropertyDetailUiModel.Content(
+                DetailedPropertyUiModel(
+                    imageUrl = "https://v.seloger.com/s/crop/590x330/visuels/1/7/t/3/17t3fitclms3bzwv8qshbyzh9dw32e9l0p0udr80k.jpg",
+                    offerType = "Achat appartement",
+                    size = "83",
+                    roomCount = 3,
+                    bedroomCount = 2,
+                    city = "Bordeaux",
+                    price = "850 000",
+                    pricePerSquareMeter = "10 252"
+                )
+            ),
+            onBackButtonPressed = {},
+        )
+    }
+}
+
+@Preview(device = "spec:parent=pixel_9_pro_fold")
+@Composable
+private fun ContentPreviewPortraitProFold() {
     AvivTheme {
         PropertyDetailScreen(
             PropertyDetailUiModel.Content(

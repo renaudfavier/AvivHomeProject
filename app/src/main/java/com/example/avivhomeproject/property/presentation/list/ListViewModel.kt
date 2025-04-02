@@ -3,7 +3,6 @@ package com.example.avivhomeproject.property.presentation.list
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.avivhomeproject.property.domain.PropertyRepository
-import com.example.avivhomeproject.property.presentation.list.PropertyListUiModel as UiModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -11,6 +10,7 @@ import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import com.example.avivhomeproject.property.presentation.list.PropertyListUiModel as UiModel
 
 @HiltViewModel
 class ListViewModel @Inject constructor(
