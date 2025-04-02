@@ -1,7 +1,6 @@
 package com.example.avivhomeproject.property.presentation.detail
 
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
@@ -19,6 +18,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -26,6 +26,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.window.core.layout.WindowWidthSizeClass
 import com.example.avivhomeproject.core.presentation.component.CenteredErrorText
 import com.example.avivhomeproject.core.presentation.component.CenteredInfiniteCircularProgressIndicator
 import com.example.avivhomeproject.core.ui.theme.AvivTheme
@@ -79,10 +80,12 @@ private fun BackButton(
 private fun Content(
     uiModel: DetailedPropertyUiModel,
     modifier: Modifier = Modifier
-) = BoxWithConstraints(
+) = Box(
     modifier = modifier.fillMaxSize()
 ) {
-    if (maxWidth < 600.dp) {
+    val windowWidthSizeClass = currentWindowAdaptiveInfo().windowSizeClass.windowWidthSizeClass
+
+    if (windowWidthSizeClass == WindowWidthSizeClass.COMPACT) {
         Column(Modifier.fillMaxSize()) {
             PropertyImage(
                 imageUrl = uiModel.imageUrl,
