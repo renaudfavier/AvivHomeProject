@@ -62,6 +62,7 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.coil.compose)
     implementation(libs.coil.network)
+    implementation(libs.kotlinx.collections.immutable)
     testImplementation(libs.junit)
     testImplementation(libs.kotlin.test)
     testImplementation(libs.kotlinx.test.coroutines)

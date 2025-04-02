@@ -1,10 +1,11 @@
 package com.example.avivhomeproject.property.presentation.list
+import kotlinx.collections.immutable.ImmutableList
 
 sealed interface PropertyListUiModel {
 
     data object Loading : PropertyListUiModel
 
-    data class Content(val properties: List<PropertyListItemUiModel>) : PropertyListUiModel
+    data class Content(val properties: ImmutableList<PropertyListItemUiModel>) : PropertyListUiModel
 
     data class Error(val message: String) : PropertyListUiModel
 }

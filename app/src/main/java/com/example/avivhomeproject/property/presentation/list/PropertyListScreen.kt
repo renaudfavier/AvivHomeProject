@@ -25,6 +25,7 @@ import com.example.avivhomeproject.core.presentation.component.CenteredInfiniteC
 import com.example.avivhomeproject.core.ui.theme.AvivTheme
 import com.example.avivhomeproject.property.presentation.component.PropertyDimensionsRow
 import com.example.avivhomeproject.property.presentation.component.PropertyImage
+import kotlinx.collections.immutable.persistentListOf
 
 @Composable
 fun PropertyListScreen(
@@ -121,7 +122,7 @@ private fun ContentPreview() {
 
         PropertyListScreen(
             uiModel = PropertyListUiModel.Content(
-                listOf(previewUiModel, previewUiModel, previewUiModel)
+                persistentListOf(previewUiModel, previewUiModel, previewUiModel)
             ),
             onPropertyClick = { },
         )
